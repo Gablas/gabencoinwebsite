@@ -14,23 +14,23 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/index.html"));
 });
 
-/* const privateKey = fs.readFileSync(
-    "/etc/letsencrypt/live/342sdfsdfkk.tk/privkey.pem",
+const privateKey = fs.readFileSync(
+    "/etc/letsencrypt/live/gabencoin.xyzk/privkey.pem",
     "utf8"
 );
 const certificate = fs.readFileSync(
-    "/etc/letsencrypt/live/342sdfsdfkk.tk/cert.pem",
+    "/etc/letsencrypt/live/gabencoin.xyz/cert.pem",
     "utf8"
 );
 const ca = fs.readFileSync(
-    "/etc/letsencrypt/live/342sdfsdfkk.tk/chain.pem",
+    "/etc/letsencrypt/live/gabencoin.xyz/chain.pem",
     "utf8"
-); */
+);
 
-//const creds = { key: privateKey, cert: certificate, ca: ca };
+const creds = { key: privateKey, cert: certificate, ca: ca };
 
 const httpServer = http.createServer(app);
-//const httpsServer = https.createServer(creds, app);
+const httpsServer = https.createServer(creds, app);
 
 httpServer.listen(80, () => {});
-//httpsServer.listen(443, () => {});
+httpsServer.listen(443, () => {});
