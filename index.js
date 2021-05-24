@@ -15,7 +15,7 @@ app.get("/", function (req, res) {
 });
 
 const privateKey = fs.readFileSync(
-    "/etc/letsencrypt/live/gabencoin.xyzk/privkey.pem",
+    "/etc/letsencrypt/live/gabencoin.xyz/privkey.pem",
     "utf8"
 );
 const certificate = fs.readFileSync(
