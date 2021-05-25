@@ -16,6 +16,10 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/website/index.html"));
 });
 
+
+const httpServer = http.createServer(app);
+httpServer.listen(80, () => {});
+
 const privateKey = fs.readFileSync(
     "/etc/letsencrypt/live/gabencoin.xyz/privkey.pem",
     "utf8"
@@ -31,8 +35,5 @@ const ca = fs.readFileSync(
 
 const creds = { key: privateKey, cert: certificate, ca: ca };
 
-const httpServer = http.createServer(app);
 const httpsServer = https.createServer(creds, app);
-
-httpServer.listen(80, () => {});
 httpsServer.listen(443, () => {});
