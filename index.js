@@ -10,8 +10,10 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.static('website'))
+
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "/index.html"));
+    res.sendFile(path.join(__dirname, "/website/index.html"));
 });
 
 const privateKey = fs.readFileSync(
