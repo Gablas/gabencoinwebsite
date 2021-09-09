@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = require("path")
+const path = require("path");
 const https = require("https");
 const http = require("http");
 require("dotenv").config();
@@ -10,12 +10,15 @@ const app = express();
 
 app.use(cors());
 
-app.use(express.static('website'))
+app.use(express.static("website"));
+
+app.use((req, res, next) => {
+    req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
+});
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/website/index.html"));
 });
-
 
 const httpServer = http.createServer(app);
 httpServer.listen(80, () => {});
